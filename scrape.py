@@ -56,4 +56,5 @@ for row in topic_info:
         data['link'].append(row[6])
 
 df = pd.DataFrame(data)
-print(df)
+
+df.to_csv('thesis_topics.csv', sep=',', index=False)
