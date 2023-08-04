@@ -15,11 +15,23 @@ topic_table = soup.find(id="selectsubject")
 
 topics = topic_table.find_all(class_="subject-card")
 
+topic_info = []
+
 for topic in topics:
+
+    result = []
     title_element = topic.find("h6", class_="title")
     title = title_element.text.strip()
+    result.append(title)
 
-    other_elements = topic.find("div", class_="element-text")
+    other_elements = topic.find_all("div", class_="element-text")
+    for element in other_elements:
+        result.append(element.text.strip())
     
+    btn = topic.find("div", class_="btn-detail")
+    detail_url = btn.find("a", class_="detail")
+    result.append(detail_url["href"])
+    topic_info.append(result)
 
+print(topic_info)
 
